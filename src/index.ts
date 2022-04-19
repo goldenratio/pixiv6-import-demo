@@ -1,16 +1,15 @@
-import { sum } from './utils/add';
-import { loadResourceMap } from './utils/resource-loader';
+import 'pixi.js-legacy';
 
-declare const BASE_URL: string;
+import { View1 } from './view1';
+import { View2 } from './view2';
 
-console.log(sum(40, 2));
-
-const resourceMapPath = `${BASE_URL}/resources/resource-map.json`;
-
-loadResourceMap(resourceMapPath).then(({ assets }) => {
-	assets.forEach(url => {
-		const image = new Image();
-		image.src = url;
-		document.body.appendChild(image);
-	});
+const app = new PIXI.Application({
+  width: 600,
+  height: 600,
+  backgroundColor: 0x000000
 });
+
+document.body.appendChild(app.view);
+
+app.stage.addChild(new View1());
+app.stage.addChild(new View2());

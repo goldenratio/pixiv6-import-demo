@@ -40,6 +40,16 @@ const defaultConfig = ({ isWatchMode, isProduction, baseUrl }) => ({
         test: /\.css$/,
         use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
       },
+      {
+        test: path.resolve('./node_modules/pixi.js-legacy'),
+        loader: 'expose-loader',
+        options: {
+          exposes: {
+            globalName: "PIXI",
+            override: true,
+          },
+        },
+      }
     ],
   },
   resolve: {
